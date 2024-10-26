@@ -1,60 +1,57 @@
 {
-    "team":
-    [
-        {
-            "title": "CEO and Founder",
-            "name": "John Smith",
-            "description": "10+ years of experience in digital marketing. Expertise in SEO, PPC, and content strategy",
-            "profile": "/team/c1.png",
-            "link": "/"
-        },
-        {
-            "title": "Director of Operations",
-            "name": "Jane Doe",
-            "description": "7+ years of experience in project management and team leadership. Strong organizational and communication skills",
-            "profile": "/team/c2.png",
-            "link": "/"
-        },
-        {
-            "title": "Senior SEO Specialist",
-            "name": "Michael Brown",
-            "description": "5+ years of experience in SEO and content creation. Proficient in keyword research and on-page optimization",
-            "profile": "/team/c3.png",
-            "link": "/"
-        }
-
-    ],
-    "process":
-    [
-        {
-            "index": 1,
-            "label": "Consultation",
-            "content": "During the initial consultation, we will discuss your business goals and objectives, target audience, and current marketing efforts. This will allow us to understand your needs and tailor our services to best fit your requirements."
-        },
-        {
-            "index": 2,
-            "label": "Research",
-            "content": "During the initial consultation, we will discuss your business goals and objectives, target audience, and current marketing efforts. This will allow us to understand your needs and tailor our services to best fit your requirements."
-        },
-        {
-            "index": 3,
-            "label": "Implementation",
-            "content": "During the initial consultation, we will discuss your business goals and objectives, target audience, and current marketing efforts. This will allow us to understand your needs and tailor our services to best fit your requirements."
-        },
-        {
-            "index": 4,
-            "label": "Optimization",
-            "content": "During the initial consultation, we will discuss your business goals and objectives, target audience, and current marketing efforts. This will allow us to understand your needs and tailor our services to best fit your requirements."
-        },
-        {
-            "index": 5,
-            "label": "Reporting",
-            "content": "During the initial consultation, we will discuss your business goals and objectives, target audience, and current marketing efforts. This will allow us to understand your needs and tailor our services to best fit your requirements."
-        },
-        {
-            "index": 6,
-            "label": "Improvement",
-            "content": "During the initial consultation, we will discuss your business goals and objectives, target audience, and current marketing efforts. This will allow us to understand your needs and tailor our services to best fit your requirements."
-        }
-    ]
+  "team": [
+    {
+      "title": "CEO and Co-Founder",
+      "name": "Goliat Oboyo",
+      "description": "10+ years of experience in digital marketing. Expertise in SEO, PPC, and content strategy",
+      "profile": "/team/c1.png",
+      "link": "/"
+    },
+    {
+      "title": "COO",
+      "name": "KC Savant",
+      "description": "7+ years of experience in project management and team leadership. Strong organizational and communication skills",
+      "profile": "/team/c2.png",
+      "link": "/"
+    },
+    {
+      "title": "CTO",
+      "name": "Biniyam Ajaw",
+      "description": "5+ years of experience in SEO and content creation. Proficient in keyword research and on-page optimization",
+      "profile": "/team/c3.png",
+      "link": "/"
+    }
+  ],
+  "process": [
+    {
+      "index": 1,
+      "label": "Request a Quote",
+      "content": "Start by sharing your vision with us. We’ll provide a tailored quote to fit your project needs and goals."
+    },
+    {
+      "index": 2,
+      "label": "Project Planning",
+      "content": "Our team collaborates with you to outline goals, timelines, and deliverables, ensuring a clear roadmap for success."
+    },
+    {
+      "index": 3,
+      "label": "Design & Development",
+      "content": "Watch your ideas come to life as we craft a unique, user-friendly solution, refining each detail along the way."
+    },
+    {
+      "index": 4,
+      "label": "Testing & Feedback",
+      "content": "We rigorously test your solution to ensure quality and performance, integrating your feedback to meet expectations."
+    },
+    {
+      "index": 5,
+      "label": "Deployment & Launch",
+      "content": "Once approved, we handle the deployment, making your digital solution live and ready to impress."
+    },
+    {
+      "index": 6,
+      "label": "Ongoing Support & Maintenance",
+      "content": "Stay supported post-launch with updates, optimizations, and maintenance to keep your solution running smoothly."
+    }
+  ]
 }
