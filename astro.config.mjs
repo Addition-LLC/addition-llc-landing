@@ -16,7 +16,7 @@ export default defineConfig({
   // adapter:
   site: 'https://Addition-llc.github.io',
 
-  outDir: './docs',
+  outDir: './dist',
 
   build: {
     assets: 'astro'
