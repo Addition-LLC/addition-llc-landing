@@ -160,3 +160,12 @@ textarea:focus {
     border-color: #3B82F6;
     /* outline: none; */
 }
+
+.quote-request-button {
+    background-color: #B9FF66;
+    color: black;
+    border: 1px solid #B9FF66;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.2s;
+}

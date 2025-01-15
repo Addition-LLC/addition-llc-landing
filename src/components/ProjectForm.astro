@@ -1,4 +1,62 @@
 ---
+import nodemailer from 'nodemailer';
+
+if (Astro.request.method === "POST") {
+  try {
+  const formData = await Astro.request.formData();
+  const values = {
+    email: formData.get('email'),
+    projectName: formData.get('projectName'),
+    projectDescription: formData.get('projectDescription'),
+    loomVideoLink: formData.get('loomVideoLink'),
+    targetUserBase: formData.get('targetUserBase'),
+    userProblem: formData.get('userProblem'),
+    targetAgeRange: formData.get('targetAgeRange'),
+    projectType: formData.getAll('projectType'),
+    features: formData.get('features'),
+    preferredTechStack: formData.get('preferredTechStack'),
+    designGuidelines: formData.get('designGuidelines'),
+    technicalRequirements: formData.get('technicalRequirements'),
+    startDate: formData.get('startDate'),
+    endDate: formData.get('endDate'),
+    maintenancePlan: formData.get('maintenancePlan'),
+    userTrainingRequired: formData.get('userTrainingRequired'),
+    thirdPartyIntegration: formData.get('thirdPartyIntegration'),
+    thirdPartyServices: formData.get('thirdPartyServices'),
+    competitors: formData.get('competitors'),
+    competitiveDifferentiation: formData.get('competitiveDifferentiation'),
+    contactName: formData.get('contactName'),
+    contactInfo: formData.get('contactInfo')
+  };
+
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'your-email@gmail.com',
+      pass: 'your-email-password'
+    }
+  });
+
+  const mailOptions = {
+    from: 'your-email@gmail.com',
+    to: 'mikiasyonas512@gmail.com',
+    subject: 'New Project Requirements Submission',
+    text: JSON.stringify(values, null, 2)
+  };
+
+  transporter.sendMail(mailOptions, (error: any, info: any) => {
+    if (error) {
+      console.error('Error sending email:', error);
+    } else {
+      console.log('Email sent:', info.response);
+    }
+  });
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message);
+    }
+  }
+}
 ---
 
 <div class="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -18,7 +76,7 @@
       </p>
     </div>
 
-    <form class="bg-white shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4 space-y-6">
+    <form method="POST" class="bg-white shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4 space-y-6">
       <div>
         <label for="email" class="block text-sm font-medium text-gray-700 mb-1">
           Email <span class="text-red-500">*</span>
@@ -190,7 +248,6 @@
         />
       </div>
 
-      <!-- Preferred Tech Stack Field -->
       <div>
         <label for="preferredTechStack" class="block text-sm font-medium text-gray-700 mb-1">
           Preferred Tech Stack (optional)
@@ -204,7 +261,6 @@
         />
       </div>
 
-      <!-- Design Guidelines Field -->
       <div>
         <label for="designGuidelines" class="block text-sm font-medium text-gray-700 mb-1">
           Design Guidelines (optional)
@@ -218,7 +274,6 @@
         ></textarea>
       </div>
 
-      <!-- Technical Requirements Field -->
       <div>
         <label for="technicalRequirements" class="block text-sm font-medium text-gray-700 mb-1">
           Technical Requirements (optional)
@@ -232,7 +287,6 @@
         ></textarea>
       </div>
 
-      <!-- Start Date Field -->
       <div>
         <label for="startDate" class="block text-sm font-medium text-gray-700 mb-1">
           Expected Start Date
@@ -245,7 +299,6 @@
         />
       </div>
 
-      <!-- End Date Field -->
       <div>
         <label for="endDate" class="block text-sm font-medium text-gray-700 mb-1">
           Expected End Date
@@ -258,7 +311,6 @@
         />
       </div>
 
-      <!-- Maintenance Plan Field -->
       <div>
         <label for="maintenancePlan" class="block text-sm font-medium text-gray-700 mb-1">
           Maintenance Plan (optional)
@@ -274,7 +326,6 @@
         </select>
       </div>
 
-      <!-- User Training Required Field -->
       <div>
         <label for="userTrainingRequired" class="block text-sm font-medium text-gray-700 mb-1">
           User Training Required
@@ -289,7 +340,6 @@
         </select>
       </div>
 
-      <!-- Third-party Integration Field -->
       <div>
         <label for="thirdPartyIntegration" class="block text-sm font-medium text-gray-700 mb-1">
           Third-party Integration Required
@@ -304,7 +354,6 @@
         </select>
       </div>
 
-      <!-- Third-party Services Field -->
       <div>
         <label for="thirdPartyServices" class="block text-sm font-medium text-gray-700 mb-1">
           Third-party Services (if applicable)
@@ -318,7 +367,6 @@
         />
       </div>
 
-      <!-- Competitors Field -->
       <div>
         <label for="competitors" class="block text-sm font-medium text-gray-700 mb-1">
           Competitors
@@ -332,7 +380,6 @@
         />
       </div>
 
-      <!-- Competitive Differentiation Field -->
       <div>
         <label for="competitiveDifferentiation" class="block text-sm font-medium text-gray-700 mb-1">
           Competitive Differentiation
@@ -346,7 +393,6 @@
         ></textarea>
       </div>
 
-      <!-- Contact Name Field -->
       <div>
         <label for="contactName" class="block text-sm font-medium text-gray-700 mb-1">
           Contact Name
@@ -360,7 +406,6 @@
         />
       </div>
 
-      <!-- Contact Info Field -->
       <div>
         <label for="contactInfo" class="block text-sm font-medium text-gray-700 mb-1">
           Contact Info
@@ -374,18 +419,16 @@
         />
       </div>
 
-      <!-- Submit Button -->
       <div class="flex justify-end">
         <button
           type="submit"
-          class="inline-flex justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200"
+          class="quote-request-button"
         >
           Submit Requirements
         </button>
       </div>
     </form>
 
-    <!-- Footer Note -->
     <p class="text-center text-sm text-gray-500 mt-4">
       Please provide as much detail as possible to help us define the project scope, including target audience, essential features, technical constraints, and timeline.
     </p>
