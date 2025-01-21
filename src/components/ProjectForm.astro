@@ -30,10 +30,11 @@ if (Astro.request.method === "POST") {
   };
 
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.mandrillapp.com',
+    port: 587,
     auth: {
-      user: 'your-email@gmail.com',
-      pass: 'your-email-password'
+      user: 'mikiasyonas512@gmail.com',
+      pass: 'md-dH4yFNCeNPs4oLcrmjzNCw'
     }
   });
 
