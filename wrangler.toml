@@ -1,0 +1,6 @@
+name = "addition"
+main = "./dist/_worker.js/index.js"
+compatibility_date = "2024-11-02"   # Use today's date
+
+[site]
+bucket = "./dist"
