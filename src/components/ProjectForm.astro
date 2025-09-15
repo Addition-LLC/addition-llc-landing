@@ -1,63 +1,5 @@
 ---
-import nodemailer from 'nodemailer';
-
-if (Astro.request.method === "POST") {
-  try {
-  const formData = await Astro.request.formData();
-  const values = {
-    email: formData.get('email'),
-    projectName: formData.get('projectName'),
-    projectDescription: formData.get('projectDescription'),
-    loomVideoLink: formData.get('loomVideoLink'),
-    targetUserBase: formData.get('targetUserBase'),
-    userProblem: formData.get('userProblem'),
-    targetAgeRange: formData.get('targetAgeRange'),
-    projectType: formData.getAll('projectType'),
-    features: formData.get('features'),
-    preferredTechStack: formData.get('preferredTechStack'),
-    designGuidelines: formData.get('designGuidelines'),
-    technicalRequirements: formData.get('technicalRequirements'),
-    startDate: formData.get('startDate'),
-    endDate: formData.get('endDate'),
-    maintenancePlan: formData.get('maintenancePlan'),
-    userTrainingRequired: formData.get('userTrainingRequired'),
-    thirdPartyIntegration: formData.get('thirdPartyIntegration'),
-    thirdPartyServices: formData.get('thirdPartyServices'),
-    competitors: formData.get('competitors'),
-    competitiveDifferentiation: formData.get('competitiveDifferentiation'),
-    contactName: formData.get('contactName'),
-    contactInfo: formData.get('contactInfo')
-  };
-
-  const transporter = nodemailer.createTransport({
-    host: 'smtp.mandrillapp.com',
-    port: 587,
-    auth: {
-      user: 'mikiasyonas512@gmail.com',
-      pass: 'md-dH4yFNCeNPs4oLcrmjzNCw'
-    }
-  });
-
-  const mailOptions = {
-    from: 'your-email@gmail.com',
-    to: 'mikiasyonas512@gmail.com',
-    subject: 'New Project Requirements Submission',
-    text: JSON.stringify(values, null, 2)
-  };
-
-  transporter.sendMail(mailOptions, (error: any, info: any) => {
-    if (error) {
-      console.error('Error sending email:', error);
-    } else {
-      console.log('Email sent:', info.response);
-    }
-  });
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(error.message);
-    }
-  }
-}
+/* no server-side email code here anymore */
 ---
 
 <div class="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -77,7 +19,8 @@ if (Astro.request.method === "POST") {
       </p>
     </div>
 
-    <form method="POST" class="bg-white shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4 space-y-6">
+    <!-- Post to our API route -->
+    <form id="req-form" method="POST" action="/api/send-email" class="bg-white shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4 space-y-6">
       <div>
         <label for="email" class="block text-sm font-medium text-gray-700 mb-1">
           Email <span class="text-red-500">*</span>
@@ -92,7 +35,6 @@ if (Astro.request.method === "POST") {
         />
       </div>
 
-      <!-- Project Name Field -->
       <div>
         <label for="projectName" class="block text-sm font-medium text-gray-700 mb-1">
           Name of the project/company
@@ -106,7 +48,6 @@ if (Astro.request.method === "POST") {
         />
       </div>
 
-      <!-- Project Description Field -->
       <div>
         <label for="projectDescription" class="block text-sm font-medium text-gray-700 mb-1">
           Describe the project
@@ -120,7 +61,6 @@ if (Astro.request.method === "POST") {
         ></textarea>
       </div>
 
-      <!-- Loom Video Link Field -->
       <div>
         <label for="loomVideoLink" class="block text-sm font-medium text-gray-700 mb-1">
           Loom Video Link (optional)
@@ -134,7 +74,6 @@ if (Astro.request.method === "POST") {
         />
       </div>
 
-      <!-- Target Audience Section -->
       <div>
         <label for="targetUserBase" class="block text-sm font-medium text-gray-700 mb-1">
           Target User Base
@@ -174,153 +113,58 @@ if (Astro.request.method === "POST") {
         />
       </div>
 
-      <!-- Project Type Section -->
       <div>
-        <label for="projectType" class="block text-sm font-medium text-gray-700 mb-1">
-          Project Type
-        </label>
+        <label for="projectType" class="block text-sm font-medium text-gray-700 mb-1">Project Type</label>
         <div class="mt-1 space-y-2">
-          <div>
-        <input type="checkbox" name="projectType" id="landingPage" value="Landing Page" class="mr-2">
-        <label for="landingPage" class="text-sm text-gray-700">Landing Page</label>
-          </div>
-          <div>
-        <input type="checkbox" name="projectType" id="crm" value="Customer Relationship Management (CRM)" class="mr-2">
-        <label for="crm" class="text-sm text-gray-700">Customer Relationship Management (CRM)</label>
-          </div>
-          <div>
-        <input type="checkbox" name="projectType" id="mobileApp" value="Mobile App" class="mr-2">
-        <label for="mobileApp" class="text-sm text-gray-700">Mobile App</label>
-          </div>
-          <div>
-        <input type="checkbox" name="projectType" id="desktopApp" value="Desktop App" class="mr-2">
-        <label for="desktopApp" class="text-sm text-gray-700">Desktop App</label>
-          </div>
-          <div>
-        <input type="checkbox" name="projectType" id="webApp" value="Web Application" class="mr-2">
-        <label for="webApp" class="text-sm text-gray-700">Web Application</label>
-          </div>
-          <div>
-        <input type="checkbox" name="projectType" id="iotApp" value="IoT Application" class="mr-2">
-        <label for="iotApp" class="text-sm text-gray-700">IoT Application</label>
-          </div>
-          <div>
-        <input type="checkbox" name="projectType" id="apiDev" value="API Development" class="mr-2">
-        <label for="apiDev" class="text-sm text-gray-700">API Development</label>
-          </div>
-          <div>
-        <input type="checkbox" name="projectType" id="lms" value="Learning Management System (LMS)" class="mr-2">
-        <label for="lms" class="text-sm text-gray-700">Learning Management System (LMS)</label>
-          </div>
-          <div>
-        <input type="checkbox" name="projectType" id="dataAnalytics" value="Data Analytics Dashboard" class="mr-2">
-        <label for="dataAnalytics" class="text-sm text-gray-700">Data Analytics Dashboard</label>
-          </div>
-          <div>
-        <input type="checkbox" name="projectType" id="ecommerce" value="E-commerce Platform" class="mr-2">
-        <label for="ecommerce" class="text-sm text-gray-700">E-commerce Platform</label>
-          </div>
-          <div>
-        <input type="checkbox" name="projectType" id="cms" value="Content Management System (CMS)" class="mr-2">
-        <label for="cms" class="text-sm text-gray-700">Content Management System (CMS)</label>
-          </div>
-          <div>
-        <input type="checkbox" name="projectType" id="erp" value="Enterprise Resource Planning (ERP)" class="mr-2">
-        <label for="erp" class="text-sm text-gray-700">Enterprise Resource Planning (ERP)</label>
-          </div>
-          <div>
-        <input type="checkbox" name="projectType" id="other" value="Other" class="mr-2">
-        <label for="other" class="text-sm text-gray-700">Other</label>
-          </div>
+          <div><input type="checkbox" name="projectType" id="landingPage" value="Landing Page" class="mr-2"><label for="landingPage" class="text-sm text-gray-700">Landing Page</label></div>
+          <div><input type="checkbox" name="projectType" id="crm" value="Customer Relationship Management (CRM)" class="mr-2"><label for="crm" class="text-sm text-gray-700">Customer Relationship Management (CRM)</label></div>
+          <div><input type="checkbox" name="projectType" id="mobileApp" value="Mobile App" class="mr-2"><label for="mobileApp" class="text-sm text-gray-700">Mobile App</label></div>
+          <div><input type="checkbox" name="projectType" id="desktopApp" value="Desktop App" class="mr-2"><label for="desktopApp" class="text-sm text-gray-700">Desktop App</label></div>
+          <div><input type="checkbox" name="projectType" id="webApp" value="Web Application" class="mr-2"><label for="webApp" class="text-sm text-gray-700">Web Application</label></div>
+          <div><input type="checkbox" name="projectType" id="iotApp" value="IoT Application" class="mr-2"><label for="iotApp" class="text-sm text-gray-700">IoT Application</label></div>
+          <div><input type="checkbox" name="projectType" id="apiDev" value="API Development" class="mr-2"><label for="apiDev" class="text-sm text-gray-700">API Development</label></div>
+          <div><input type="checkbox" name="projectType" id="lms" value="Learning Management System (LMS)" class="mr-2"><label for="lms" class="text-sm text-gray-700">Learning Management System (LMS)</label></div>
+          <div><input type="checkbox" name="projectType" id="dataAnalytics" value="Data Analytics Dashboard" class="mr-2"><label for="dataAnalytics" class="text-sm text-gray-700">Data Analytics Dashboard</label></div>
+          <div><input type="checkbox" name="projectType" id="ecommerce" value="E-commerce Platform" class="mr-2"><label for="ecommerce" class="text-sm text-gray-700">E-commerce Platform</label></div>
+          <div><input type="checkbox" name="projectType" id="cms" value="Content Management System (CMS)" class="mr-2"><label for="cms" class="text-sm text-gray-700">Content Management System (CMS)</label></div>
+          <div><input type="checkbox" name="projectType" id="erp" value="Enterprise Resource Planning (ERP)" class="mr-2"><label for="erp" class="text-sm text-gray-700">Enterprise Resource Planning (ERP)</label></div>
+          <div><input type="checkbox" name="projectType" id="other" value="Other" class="mr-2"><label for="other" class="text-sm text-gray-700">Other</label></div>
         </div>
       </div>
 
-      <!-- Features Section -->
       <div>
-        <label for="features" class="block text-sm font-medium text-gray-700 mb-1">
-          Features
-        </label>
-        <input
-          type="text"
-          name="features"
-          id="features"
-          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm h-12"
-          placeholder="List the features (comma separated)"
-        />
+        <label for="features" class="block text-sm font-medium text-gray-700 mb-1">Features</label>
+        <input type="text" name="features" id="features" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm h-12" placeholder="List the features (comma separated)" />
       </div>
 
       <div>
-        <label for="preferredTechStack" class="block text-sm font-medium text-gray-700 mb-1">
-          Preferred Tech Stack (optional)
-        </label>
-        <input
-          type="text"
-          name="preferredTechStack"
-          id="preferredTechStack"
-          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm h-12"
-          placeholder="e.g., React, Node.js, etc."
-        />
+        <label for="preferredTechStack" class="block text-sm font-medium text-gray-700 mb-1">Preferred Tech Stack (optional)</label>
+        <input type="text" name="preferredTechStack" id="preferredTechStack" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm h-12" placeholder="e.g., React, Node.js, etc." />
       </div>
 
       <div>
-        <label for="designGuidelines" class="block text-sm font-medium text-gray-700 mb-1">
-          Design Guidelines (optional)
-        </label>
-        <textarea
-          name="designGuidelines"
-          id="designGuidelines"
-          rows="4"
-          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-          placeholder="Provide any design guidelines or preferences..."
-        ></textarea>
+        <label for="designGuidelines" class="block text-sm font-medium text-gray-700 mb-1">Design Guidelines (optional)</label>
+        <textarea name="designGuidelines" id="designGuidelines" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" placeholder="Provide any design guidelines or preferences..."></textarea>
       </div>
 
       <div>
-        <label for="technicalRequirements" class="block text-sm font-medium text-gray-700 mb-1">
-          Technical Requirements (optional)
-        </label>
-        <textarea
-          name="technicalRequirements"
-          id="technicalRequirements"
-          rows="4"
-          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-          placeholder="Specify any technical requirements..."
-        ></textarea>
+        <label for="technicalRequirements" class="block textsm font-medium text-gray-700 mb-1">Technical Requirements (optional)</label>
+        <textarea name="technicalRequirements" id="technicalRequirements" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" placeholder="Specify any technical requirements..."></textarea>
       </div>
 
       <div>
-        <label for="startDate" class="block text-sm font-medium text-gray-700 mb-1">
-          Expected Start Date
-        </label>
-        <input
-          type="date"
-          name="startDate"
-          id="startDate"
-          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm h-12"
-        />
+        <label for="startDate" class="block text-sm font-medium text-gray-700 mb-1">Expected Start Date</label>
+        <input type="date" name="startDate" id="startDate" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm h-12" />
       </div>
 
       <div>
-        <label for="endDate" class="block text-sm font-medium text-gray-700 mb-1">
-          Expected End Date
-        </label>
-        <input
-          type="date"
-          name="endDate"
-          id="endDate"
-          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm h-12"
-        />
+        <label for="endDate" class="block text-sm font-medium text-gray-700 mb-1">Expected End Date</label>
+        <input type="date" name="endDate" id="endDate" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm h-12" />
       </div>
 
       <div>
-        <label for="maintenancePlan" class="block text-sm font-medium text-gray-700 mb-1">
-          Maintenance Plan (optional)
-        </label>
-        <select
-          name="maintenancePlan"
-          id="maintenancePlan"
-          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm h-12"
-        >
+        <label for="maintenancePlan" class="block text-sm font-medium text-gray-700 mb-1">Maintenance Plan (optional)</label>
+        <select name="maintenancePlan" id="maintenancePlan" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm h-12">
           <option value="">Select a maintenance plan</option>
           <option value="Monthly Active and Upgrades">Monthly Active and Upgrades</option>
           <option value="Feature Based Maintenance and Upgrades">Feature Based Maintenance and Upgrades</option>
@@ -328,105 +172,49 @@ if (Astro.request.method === "POST") {
       </div>
 
       <div>
-        <label for="userTrainingRequired" class="block text-sm font-medium text-gray-700 mb-1">
-          User Training Required
-        </label>
-        <select
-          name="userTrainingRequired"
-          id="userTrainingRequired"
-          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm h-12"
-        >
+        <label for="userTrainingRequired" class="block text-sm font-medium text-gray-700 mb-1">User Training Required</label>
+        <select name="userTrainingRequired" id="userTrainingRequired" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm h-12">
           <option value="true">Yes</option>
           <option value="false">No</option>
         </select>
       </div>
 
       <div>
-        <label for="thirdPartyIntegration" class="block text-sm font-medium text-gray-700 mb-1">
-          Third-party Integration Required
-        </label>
-        <select
-          name="thirdPartyIntegration"
-          id="thirdPartyIntegration"
-          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm h-12"
-        >
+        <label for="thirdPartyIntegration" class="block text-sm font-medium text-gray-700 mb-1">Third-party Integration Required</label>
+        <select name="thirdPartyIntegration" id="thirdPartyIntegration" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm h-12">
           <option value="true">Yes</option>
           <option value="false">No</option>
         </select>
       </div>
 
       <div>
-        <label for="thirdPartyServices" class="block text-sm font-medium text-gray-700 mb-1">
-          Third-party Services (if applicable)
-        </label>
-        <input
-          type="text"
-          name="thirdPartyServices"
-          id="thirdPartyServices"
-          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm h-12"
-          placeholder="List the third-party services (comma separated)"
-        />
+        <label for="thirdPartyServices" class="block text-sm font-medium text-gray-700 mb-1">Third-party Services (if applicable)</label>
+        <input type="text" name="thirdPartyServices" id="thirdPartyServices" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm h-12" placeholder="List the third-party services (comma separated)" />
       </div>
 
       <div>
-        <label for="competitors" class="block text-sm font-medium text-gray-700 mb-1">
-          Competitors
-        </label>
-        <input
-          type="text"
-          name="competitors"
-          id="competitors"
-          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm h-12"
-          placeholder="List your competitors"
-        />
+        <label for="competitors" class="block text-sm font-medium text-gray-700 mb-1">Competitors</label>
+        <input type="text" name="competitors" id="competitors" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm h-12" placeholder="List your competitors" />
       </div>
 
       <div>
-        <label for="competitiveDifferentiation" class="block text-sm font-medium text-gray-700 mb-1">
-          Competitive Differentiation
-        </label>
-        <textarea
-          name="competitiveDifferentiation"
-          id="competitiveDifferentiation"
-          rows="4"
-          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-          placeholder="How does your project differentiate from competitors?"
-        ></textarea>
+        <label for="competitiveDifferentiation" class="block text-sm font-medium text-gray-700 mb-1">Competitive Differentiation</label>
+        <textarea name="competitiveDifferentiation" id="competitiveDifferentiation" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" placeholder="How does your project differentiate from competitors?"></textarea>
       </div>
 
       <div>
-        <label for="contactName" class="block text-sm font-medium text-gray-700 mb-1">
-          Contact Name
-        </label>
-        <input
-          type="text"
-          name="contactName"
-          id="contactName"
-          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm h-12"
-          placeholder="Enter your name"
-        />
+        <label for="contactName" class="block text-sm font-medium text-gray-700 mb-1">Contact Name</label>
+        <input type="text" name="contactName" id="contactName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm h-12" placeholder="Enter your name" />
       </div>
 
       <div>
-        <label for="contactInfo" class="block text-sm font-medium text-gray-700 mb-1">
-          Contact Info
-        </label>
-        <input
-          type="text"
-          name="contactInfo"
-          id="contactInfo"
-          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm h-12"
-          placeholder="Enter your contact info (phone number or email)"
-        />
+        <label for="contactInfo" class="block text-sm font-medium text-gray-700 mb-1">Contact Info</label>
+        <input type="text" name="contactInfo" id="contactInfo" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm h-12" placeholder="Enter your contact info (phone number or email)" />
       </div>
 
-      <div class="flex justify-end">
-        <button
-          type="submit"
-          class="quote-request-button"
-        >
-          Submit Requirements
-        </button>
+      <div class="flex items-center justify-between">
+        <div id="form-status" class="text-sm text-gray-500"></div>
+        <button type="submit" class="quote-request-button">Submit Requirements</button>
       </div>
     </form>
 
@@ -435,3 +223,22 @@ if (Astro.request.method === "POST") {
     </p>
   </div>
 </div>
+
+<!-- Optional small enhancement to show success/error without page reload -->
+<script is:inline>
+  const form = document.getElementById('req-form');
+  const statusEl = document.getElementById('form-status');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    statusEl.textContent = 'Submitting...';
+    const resp = await fetch(form.action, { method: 'POST', body: new FormData(form) });
+    const data = await resp.json().catch(() => ({}));
+    if (resp.ok && data.ok) {
+      statusEl.textContent = 'Thanks! We received your submission.';
+      form.reset();
+    } else {
+      statusEl.textContent = `Something went wrong${data?.error ? `: ${data.error}` : ''}.`;
+    }
+  });
+</script>

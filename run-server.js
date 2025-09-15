@@ -8,4 +8,4 @@ const base = '/';
 app.use(base, express.static('dist/client/'));
 app.use(ssrHandler);
 
-app.listen(3000, ()=> console.log('Server started on port 3000'));
+app.listen(7000, ()=> console.log('Server started on port 3000'));

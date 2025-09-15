@@ -13,7 +13,7 @@
     "name1": "Web App ",
     "name2": "Development",
     "background": "h-[310px] p-12 bg-[#1E40AF] rounded-[45px] shadow-card border border-black justify-between items-center flex text-white",
-    "arrow": "./services/ag.svg",
+    "arrow": "./services/aw.svg",
     "link": "./",
     "image": "./services/02.svg"
   },
