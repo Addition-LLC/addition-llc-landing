@@ -2,65 +2,125 @@
 import Container from "./Container.astro"
 import Topic from "./Topic.astro";
 import teamData from './Data/team.json';
-import Accordion from "./Accordion.astro";
-
 ---
 <Container>
-<div class="relative flex flex-col items-center md:flex-row">
+  <!-- Process -->
+  <div class="relative flex flex-col items-center md:flex-row">
     <Topic title="Process" description="Step-by-Step Guide to Achieving Your Business Goals"/>
-</div>
+  </div>
 
-<div class="my-6">
-    <div class="space-y-10">
-        {
-            teamData.process.map((item) => {
-                return (
-                <Accordion
-                    index= {item.index}
-                    title={item.label}
-                    description={item.content}
-                />
-                );
-            })
-        }
-    </div>
-</div>
+  <!-- Desktop: horizontal timeline with even cards -->
+  <section class="hidden md:block mt-6">
+    <div class="relative">
+      <!-- connecting rail -->
+      <div class="pointer-events-none absolute inset-x-0 top-[56px] h-[2px] bg-zinc-200"></div>
 
-<div class="relative flex flex-col items-center md:flex-row pt-6">
-    <Topic title="Team" description="Meet the skilled and experienced team behind our successful company"/>
-</div>
-
-<div class="flex-row items-center py-5" id="team">
-    <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-4">
-    {
-    teamData.team.map(({ title, description, name, link, profile} ) => (
-    <div class="h-[331px] px-[35px] py-10 bg-white rounded-[45px] shadow-card border border-zinc-900 flex-col justify-start items-start gap-2.5 inline-flex text-black">
-        <div class="flex-col justify-start items-start gap-7 flex">
-            <div class="self-stretch justify-start items-start inline-flex">
-                <div class="grow shrink basis-0 justify-start items-center gap-8 flex">
-                    <div class="h-[102.82px] left-0 top-0 relative">
-                        <img src={profile} alt={name}/>
-                    </div>
-                    <div class="flex-col justify-end items-start inline-flex">
-                        <div class="text-lg font-normal">{title}</div>
-                        <div class="text-xl font-medium">{name}</div>
-                    </div>
-                </div>
-                <a class="top-0 right-0" href={link}>
-                    <img src="/team/lng.svg" alt="vector"/>
-                </a>
+      <ol class="grid grid-cols-6 gap-6">
+        {teamData.process.map((item) => (
+          <li class="relative flex flex-col items-center">
+            <!-- step badge -->
+            <div class="h-12 w-12 flex items-center justify-center rounded-xl
+                        border border-zinc-900 bg-white text-lg font-semibold shadow-sm z-10">
+              {String(item.index).padStart(2,'0')}
             </div>
-            <hr class="w-full border border-black"/>
-            <p class="text-sm md:text-lg">{description}</p>
-        </div>
-    </div>
-    ))
-    }
-    </div>
-</div>
-<div class="w-full justify-center md:justify-end items-center inline-flex">
-    <!-- <button class="px-8 py-5 bg-zinc-900 hover:bg-white rounded-2xl text-center text-white hover:text-black border text-xl font-normal leading-7">See all team
-    </button> -->
-</div>
 
+            <!-- step card -->
+            <div class="mt-4 w-full rounded-2xl border border-zinc-900 bg-white shadow-card transition
+                        hover:-translate-y-0.5 hover:shadow-md
+                        h-full min-h-[220px] flex flex-col">
+              <div class="p-4 flex flex-col grow">
+                <h4 class="text-sm font-semibold">{item.label}</h4>
+                <p class="mt-2 text-xs text-zinc-700 leading-relaxed">
+                  {item.content}
+                </p>
+                <div class="mt-auto pt-3"></div>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Mobile: compact 2-column grid -->
+  <section class="md:hidden mt-4">
+    <div class="grid grid-cols-2 gap-3">
+      {teamData.process.map((item) => (
+        <div class="rounded-2xl border border-zinc-900 bg-white shadow-card p-3 min-h-[170px] flex flex-col">
+          <div class="mb-2 inline-flex h-9 w-9 items-center justify-center rounded-lg
+                      border border-zinc-900 bg-blue-600 text-white text-xs font-semibold">
+            {String(item.index).padStart(2,'0')}
+          </div>
+          <h4 class="text-[13px] font-semibold leading-tight">{item.label}</h4>
+          <p class="mt-1 text-[11px] text-zinc-700 leading-relaxed">
+            {item.content}
+          </p>
+          <div class="mt-auto pt-2"></div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Team -->
+  <div class="relative flex flex-col items-center md:flex-row pt-10">
+    <Topic title="Team" description="Meet the skilled and experienced team behind our successful company"/>
+  </div>
+
+  <section id="team" class="py-5">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      {teamData.team.map(({ title, description, name, link, profile }) => (
+        <article
+          class="group relative overflow-hidden rounded-3xl border border-zinc-900 bg-white shadow-card transition
+                 hover:-translate-y-1 hover:shadow-xl"
+        >
+          {/* LinkedIn button */}
+          {link && (
+            <a href={link} target="_blank" rel="noopener noreferrer"
+               class="absolute right-4 top-4 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full
+                      border border-zinc-900 bg-white shadow-sm transition
+                      hover:-translate-y-0.5 hover:shadow">
+              <img src="/team/lng.svg" alt="LinkedIn" class="h-5 w-5" />
+            </a>
+          )}
+
+          {/* Profile image */}
+          <div class="relative p-2 pb-0">
+            <div class="overflow-hidden rounded-2xl border border-zinc-900">
+              <div class="aspect-[4/3] w-full">
+                <img
+                  src={profile}
+                  alt={name}
+                  class="h-full w-full object-cover transition-transform duration-300
+                         group-hover:scale-[1.03]"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Content */}
+          <div class="px-6 pt-5 pb-6">
+            <div class="mb-4 h-1.5 w-16 rounded-full bg-blue-600"></div>
+            <h3 class="text-xl font-semibold text-black">{name}</h3>
+            <p class="mt-1 text-base text-zinc-800">{title}</p>
+            <p class="mt-4 text-sm md:text-base text-zinc-900 leading-relaxed">
+              {description}
+            </p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="mt-8 flex w-full items-center justify-center">
+      <a
+        href="/#team"
+        class="inline-flex items-center justify-center rounded-2xl px-8 py-4 text-lg font-medium
+               bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800
+               shadow-sm hover:shadow transition-colors"
+      >
+        See all team
+      </a>
+    </div>
+  </section>
 </Container>

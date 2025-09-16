@@ -1,23 +1,23 @@
 {
   "team": [
     {
-      "title": "CEO and Co-Founder",
-      "name": "Goliat Oboyo",
+      "title": "CEO and Sales Lead",
+      "name": "Goliath Oboyo",
       "description": "10+ years of experience in digital marketing. Expertise in SEO, PPC, and content strategy",
       "profile": "/team/c1.png",
       "link": "/"
     },
     {
-      "title": "COO",
-      "name": "KC Savant",
-      "description": "7+ years of experience in project management and team leadership. Strong organizational and communication skills",
+      "title": "COO and QA Lead",
+      "name": "Devin Wise",
+      "description": "7+ years of experience in project management and quality assurance. Strong organizational and communication skills",
       "profile": "/team/c2.png",
       "link": "/"
     },
     {
-      "title": "CTO",
+      "title": "CTO and Dev Team Lead",
       "name": "Biniyam Ajaw",
-      "description": "5+ years of experience in SEO and content creation. Proficient in keyword research and on-page optimization",
+      "description": "5+ years of experience in Machine Learning and Backend development. Skilled in Python, and Typescript, and cloud technologies",
       "profile": "/team/c3.png",
       "link": "/"
     }
