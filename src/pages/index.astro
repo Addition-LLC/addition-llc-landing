@@ -3,18 +3,36 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import Services from "../components/Services.astro"
 import Team from '../components/Team.astro';
-import Testimonial from '../components/Testimonial.astro';
 import Contact from '../components/Contact.astro';
 import Case from '../components/Case.astro';
 ---
-<!-- POSITIVUS Official Astro theme -->
+
+{/* Add this style block here for the background */}
+<style>
+  .hero-background {
+    background-color: #f8fafc; /* slate-50 */
+    background-image: radial-gradient(#d1d5db 1px, transparent 1px);
+    background-size: 1.5rem 1.5rem;
+  }
+</style>
+
 <Layout title="Positivus">
-	<main class="space-y-20">
-		<Hero/>
-		<Services/>
-		<Case/>
-		<Team/>
-		<Testimonial/>
-		<Contact/>
-	</main>
+  {/* Apply the background class and relative positioning here */}
+  <main class="hero-background relative overflow-hidden space-y-20">
+    
+    {/* Decorative orbs now live on the main page */}
+    <div class="absolute inset-0 z-0 pointer-events-none">
+      <div class="absolute -top-1/4 -left-1/4 h-[50rem] w-[50rem] rounded-full bg-[radial-gradient(circle_farthest-side,rgba(59,130,246,0.08),rgba(255,255,255,0))]"></div>
+      <div class="absolute -bottom-1/4 -right-1/4 h-[50rem] w-[50rem] rounded-full bg-[radial-gradient(circle_farthest-side,rgba(59,130,246,0.08),rgba(255,255,255,0))]"></div>
+    </div>
+
+    <div class="relative z-10">
+      <Hero/>
+      <Services/>
+      <Case/>
+      <Team/>
+      <!-- <Testimonial/> -->
+      <Contact/>
+    </div>
+  </main>
 </Layout>

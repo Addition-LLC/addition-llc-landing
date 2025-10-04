@@ -1,12 +1,25 @@
 ---
-const { title, description} = Astro.props;
+// src/components/Topic.astro
+export interface Props {
+    title: string;
+    description: string;
+}
+
+const { title, description } = Astro.props;
 ---
 
-<div class="grid place-items-center gap-5 mb-10 md:flex">
-    <h2 class="text-4xl sm:text-5xl px-1.5 font-medium bg-[#1E40AF] text-white rounded-md">
-        {title}
+<div class="mx-auto max-w-3xl text-center">
+    <h2 
+      class="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl"
+      style="font-family: 'Space Grotesk', sans-serif;"
+    >
+      {title}
     </h2>
-    <p class="text-xl font-normal text-center md:text-start lg:w-2/3">
-        {description}
+    <p 
+      class="mt-6 text-lg leading-8 text-slate-600"
+      style="font-family: 'Space Grotesk', sans-serif;"
+    >
+      {description}
     </p>
 </div>
+

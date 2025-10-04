@@ -1,38 +1,22 @@
 [
   {
-    "id": 1,
-    "name1": "AI & Machine Learning",
-    "name2": "Solutions",
-    "background": "h-[310px] p-12 bg-zinc-100 rounded-[45px] shadow-card border border-black justify-between items-center flex text-black",
-    "arrow": "./services/ag.svg",
-    "link": "./",
-    "image": "./services/01.svg"
+    "title": "AI & Automation Solutions",
+    "shortDescription": "Harness the power of AI to work smarter. We build intelligent chatbots, AI agents, and predictive analytics to streamline operations and boost growth.",
+    "longDescription": "We help businesses harness the power of Artificial Intelligence and Machine Learning to work smarter, not harder. From intelligent chatbots and AI sales agents to predictive analytics and workflow automation, our solutions streamline operations, cut costs, and boost growth."
   },
   {
-    "id": 2,
-    "name1": "Web App ",
-    "name2": "Development",
-    "background": "h-[310px] p-12 bg-[#1E40AF] rounded-[45px] shadow-card border border-black justify-between items-center flex text-white",
-    "arrow": "./services/aw.svg",
-    "link": "./",
-    "image": "./services/02.svg"
+    "title": "Custom Software & Web Applications",
+    "shortDescription": "Every business is unique—your software should be too. We design and develop secure, scalable applications tailored to your exact needs.",
+    "longDescription": "Every business is unique — your software should be too. We design and develop secure, scalable applications tailored to your exact needs, whether it’s a SaaS platform, business dashboard, or enterprise workflow system. Our goal is to turn your ideas into powerful digital tools."
   },
   {
-    "id": 3,
-    "name1": "Mobile App",
-    "name2": "Development",
-    "background": "h-[310px] p-12 bg-black rounded-[45px] shadow-card border border-black justify-between items-center flex text-white",
-    "arrow": "./services/aw.svg",
-    "link": "./",
-    "image": "./services/03.svg"
+    "title": "Mobile App Development",
+    "shortDescription": "Stay connected with your customers wherever they are. We build high-performing iOS, Android, and cross-platform apps that users love.",
+    "longDescription": "Stay connected with your customers wherever they are. We build high-performing iOS, Android, and cross-platform apps that combine intuitive design with rock-solid functionality. Whether for startups or enterprise, we make mobile experiences that users love."
   },
   {
-    "id": 4,
-    "name1": "Website",
-    "name2": "Development",
-    "background": "h-[310px] p-12 bg-zinc-100 rounded-[45px] shadow-card border border-black justify-between items-center flex text-black",
-    "arrow": "./services/ag.svg",
-    "link": "./",
-    "image": "./services/04.svg"
+    "title": "Cloud & IT Infrastructure",
+    "shortDescription": "Great technology needs a strong foundation. We provide cloud migration, DevOps support, and IT infrastructure management to keep you running smoothly.",
+    "longDescription": "Great technology needs a strong foundation. We provide cloud migration, DevOps support, and IT infrastructure management to keep your systems running smoothly and securely. With our team, your business can scale confidently without downtime or data risks."
   }
 ]

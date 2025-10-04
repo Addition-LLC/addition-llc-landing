@@ -1,24 +1,89 @@
 ---
-import Container from "./Container.astro"
+import Container from "./Container.astro";
+
+const navLinks = [
+  { href: "/about", label: "About Us" },
+  { href: "/#services", label: "Services" },
+  { href: "/#projects", label: "Use Cases" },
+  { href: "/articles", label: "Blog" },
+];
+
+const socialLinks = [
+    { 
+        href: "#", 
+        label: "LinkedIn",
+        icon: `<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>`
+    },
+    { 
+        href: "#", 
+        label: "Twitter",
+        icon: `<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616v.064c0 2.298 1.634 4.212 3.793 4.649-.562.152-1.158.23-1.778.23-.304 0-.6-.028-.888-.083.623 1.884 2.433 3.267 4.573 3.305-1.625 1.272-3.673 2.03-5.902 2.03-.384 0-.76-.024-1.135-.067 2.099 1.353 4.604 2.148 7.29 2.148 8.568 0 13.255-7.098 13.255-13.254 0-.202-.005-.403-.014-.602.91-.658 1.7-1.477 2.323-2.41z"/></svg>`
+    }
+];
 ---
-<footer class="bg-[#1E40AF] bg-fixed bg-bottom text-white">
+<footer class="bg-slate-900 text-slate-300" style="font-family: 'Space Grotesk', sans-serif;">
     <Container>
-    <div class="py-6">
-        <div class="flex flex-col items-center justify-between md:flex-row">
-            <div class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img class="w-auto" src="/Logo.svg" alt="Logo">
-            </div>
-            <div class="flex mt-4 md:m-0">
-                <div class="-mx-4">
-                    @ <span id="currentYear"></span> Made with ❤️ at Addition+</div>
+        <div class="py-16">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+                
+                <!-- Footer Intro -->
+                <div class="md:col-span-4">
+                    <a href="/" class="mb-4 inline-block">
+                        <img class="h-8 w-auto" src="/Logo.svg" alt="Addition+ Logo">
+                    </a>
+                    <p class="text-slate-400">Digital Innovation, Redefined. We transform ideas into powerful digital experiences.</p>
                 </div>
+
+                <!-- Navigation Links -->
+                <div class="md:col-span-2">
+                    <h4 class="font-semibold text-white mb-4">Navigate</h4>
+                    <ul class="space-y-3">
+                        {navLinks.map(link => (
+                            <li><a href={link.href} class="hover:text-blue-400 transition-colors">{link.label}</a></li>
+                        ))}
+                    </ul>
+                </div>
+
+                <!-- Services Links (example) -->
+                <div class="md:col-span-3">
+                    <h4 class="font-semibold text-white mb-4">Our Services</h4>
+                    <ul class="space-y-3">
+                        <li><a href="/#services" class="hover:text-blue-400 transition-colors">AI & Automation</a></li>
+                        <li><a href="/#services" class="hover:text-blue-400 transition-colors">Custom Software</a></li>
+                        <li><a href="/#services" class="hover:text-blue-400 transition-colors">Mobile App Development</a></li>
+                        <li><a href="/#services" class="hover:text-blue-400 transition-colors">Cloud & Infrastructure</a></li>
+                    </ul>
+                </div>
+
+                <!-- Connect / Social -->
+                <div class="md:col-span-3">
+                    <h4 class="font-semibold text-white mb-4">Connect With Us</h4>
+                    <a href="mailto:contact@additionplus.ai" class="block mb-4 hover:text-blue-400 transition-colors">contact@additionplus.ai</a>
+                    <div class="flex space-x-4">
+                        {socialLinks.map(social => (
+                            <a href={social.href} class="text-slate-400 hover:text-white" aria-label={social.label}>
+                                <div set:html={social.icon} />
+                            </a>
+                        ))}
+                    </div>
+                </div>
+
             </div>
         </div>
-    </div>
+
+        <!-- Bottom Bar -->
+        <div class="py-6 border-t border-slate-800">
+            <div class="text-center text-sm text-slate-500">
+                &copy; <span id="currentYear"></span> Addition Plus LLC. All Rights Reserved.
+            </div>
+        </div>
     </Container>
 </footer>
 
 <script is:inline>
     const year = new Date().getFullYear();
-    document.getElementById("currentYear").innerHTML = `${year}`;
+    const yearEl = document.getElementById("currentYear");
+    if (yearEl) {
+        yearEl.innerHTML = `${year}`;
+    }
 </script>

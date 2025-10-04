@@ -1,72 +1,74 @@
----
-import Container from "./Container.astro"
----
-<Container>
-  <section id="hero" class="relative flex flex-col-reverse items-center md:flex-row">
-    <!-- Left -->
-    <div class="row items-center py-5 md:w-6/12 md:pb-20 md:pt-10">
-      <div class="text-left space-y-3">
-        <h1 class="text-5xl font-medium leading-none md:text-6xl text-center md:text-left">
-          Empowering Digital<br />Innovation with<br /> Precision & Passion
-        </h1>
+<!-- Google Font import for 'Space Grotesk' -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-        <p class="mt-6 mb-8 text-xl font-normal leading-7 sm:mb-12 text-center md:text-left">
-          At Addition+, we transform ideas into digital experiences. From custom websites and web
-          apps to mobile solutions and AI-driven innovations, our expertise brings your vision to
-          life with cutting-edge technology and strategic creativity.
-        </p>
+<section id="hero" class="hero-background relative flex min-h-screen flex-col items-center justify-center overflow-hidden py-20" style="font-family: 'Space Grotesk', sans-serif;">
+  
+  <div class="absolute inset-0 z-0 overflow-hidden">
+      <div class="absolute -top-1/4 -left-1/4 h-[50rem] w-[50rem] rounded-full bg-[radial-gradient(circle_farthest-side,rgba(59,130,246,0.1),rgba(255,255,255,0))]"></div>
+      <div class="absolute -bottom-1/4 -right-1/4 h-[50rem] w-[50rem] rounded-full bg-[radial-gradient(circle_farthest-side,rgba(59,130,246,0.1),rgba(255,255,255,0))]"></div>
+  </div>
 
-        <div class="w-full inline-flex justify-center md:justify-start items-center">
-          <!-- Solid, visible blue CTA (independent of global link styles) -->
-          <a
-            href="https://calendly.com/odolbiniyam/intro-call-with-addition"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Book a consultation with Addition+ on Calendly"
-            class="cta"
-          >
-            Book a consultation
-          </a>
-        </div>
+  <div class="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="flex flex-col items-center text-center">
+      
+      <!-- FINAL FIX: The h1 has been restructured into a div with two separate spans. 
+      This prevents the global text color from overriding the gradient. -->
+      <div class="animate-fade-in-up text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl" role="heading" aria-level="1">
+        <span class="text-slate-900">Digital Innovation,</span>
+        <span class="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+          Redefined.
+        </span>
       </div>
+      
+      <p class="animate-fade-in-up mt-6 max-w-2xl text-lg text-slate-600 md:text-xl" style="animation-delay: 0.2s;">
+        We transform ideas into powerful digital experiences. From custom web and mobile solutions to AI-driven innovations, we bring your vision to life with precision and passion.
+      </p>
+
+      <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-6">
+        <a
+          href="#contact"
+          aria-label="Contact the sales team"
+          class="cta-primary group relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-blue-600 px-8 py-3 text-lg font-semibold !text-white transition-all duration-300 ease-in-out hover:scale-105 hover:bg-blue-700 hover:shadow-lg"
+        >
+          Contact Sales Team
+        </a>
+        <a 
+          href="#services"
+          aria-label="Explore our services"
+          class="group inline-flex items-center justify-center rounded-lg border-2 border-blue-600 px-8 py-3 text-lg font-semibold text-blue-600 transition-all duration-300 hover:scale-105 hover:bg-blue-50 hover:shadow-md"
+        >
+          Explore Services
+          <span class="ml-2 transition-transform group-hover:translate-x-1">&rarr;</span>
+        </a>
+      </div>
+
     </div>
+  </div>
+</section>
 
-    <!-- Right -->
-    <div class="flex items-center py-5 md:w-6/12 md:pb-20 md:pt-10">
-      <img src="/Hero.svg" width="100%" alt="Hero" />
-    </div>
-  </section>
+<style>
+.hero-background {
+  background-color: #f8fafc; /* slate-50 */
+  background-image: radial-gradient(#d1d5db 1px, transparent 1px);
+  background-size: 1.5rem 1.5rem;
+}
 
-  <style>
-    /* Scoped to this component so it won't leak elsewhere */
-    .cta {
-      /* wipe any global <a> styles (color, background, borders, etc.) */
-      all: unset;
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-      /* layout & sizing */
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1.25rem 2rem;          /* 20px x 32px approx */
-      border-radius: 1rem;            /* 16px */
-      line-height: 1;
+.animate-fade-in-up {
+  animation: fade-in-up 0.9s ease-out forwards;
+  opacity: 0; 
+}
+</style>
 
-      /* typography */
-      font-size: 1.25rem;             /* 20px */
-      font-weight: 600;
-
-      /* colors (Tailwind blue equivalents) */
-      background-color: #2563EB;      /* blue-600 */
-      color: #FFFFFF;                 /* white */
-      text-decoration: none;
-
-      /* polish */
-      box-shadow: 0 1px 2px rgba(0,0,0,0.06);
-      transition: background-color .2s ease, box-shadow .2s ease, transform .02s ease;
-      cursor: pointer;
-    }
-    .cta:hover   { background-color: #1D4ED8; box-shadow: 0 4px 12px rgba(0,0,0,0.10); } /* blue-700 */
-    .cta:active  { background-color: #1E40AF; transform: translateY(1px); }               /* blue-800 */
-    .cta:focus-visible { outline: 2px solid #3B82F6; outline-offset: 3px; }               /* ring-blue-500 */
-  </style>
-</Container>

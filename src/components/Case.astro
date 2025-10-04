@@ -1,69 +1,58 @@
 ---
 import Container from "./Container.astro"
 import Topic from "./Topic.astro"
+
+const caseStudies = [
+  {
+    title: "Secure Tax Platform",
+    description: "For a tax services company, we built a highly secure, role-based platform for real-time collaboration. It includes encrypted document exchange, e-signature, and audit logs—streamlining filings while maintaining rigorous compliance.",
+    href: "/case-studies/tax-platform",
+  },
+  {
+    title: "AI Hotel Concierge",
+    description: "For multiple hotels and resorts, our team deployed multilingual AI concierges across web, WhatsApp, and Facebook—answering FAQs, handling bookings, and integrating with property systems for accurate, real-time info.",
+    href: "/case-studies/hotel-chatbots",
+  },
+  {
+    title: "Bilingual Media Monitoring",
+    description: "For a media group, we engineered a social listening system that tracks coverage in Amharic and English, surfaces sentiment trends, and identifies optimal posting windows—informing content and ad spend with data-driven insights.",
+    href: "/case-studies/media-monitoring",
+  },
+  {
+    title: "AI for EdTech",
+    description: "For an EdTech initiative, we built AI pipelines for story and assignment generation, added grammar validation, and ensured curriculum alignment—delivering consistent, safe content at scale.",
+    href: "/case-studies/edtech-ai",
+  },
+]
 ---
+
 <Container>
-  <div class="relative flex flex-col items-center md:flex-row" id="projects">
-    <Topic
-      title="Case Studies"
-      description="Explore Real-Life Examples of Our Proven Digital Marketing & AI Success"
-    />
-  </div>
-
-  <div class="w-full p-12 bg-zinc-900 rounded-[45px] text-white">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <!-- NEW: Secure Tax Platform -->
-      <div class="flex flex-col gap-5 px-2 md:px-6 py-6 rounded-3xl border border-white/10 bg-white/0">
-        <p class="text-lg font-normal">
-          For a tax services company, we built a highly secure, role-based platform where clients,
-          tax specialists, and admins collaborate in real time. It includes encrypted document
-          exchange, e-signature, granular permissions, and audit logs—streamlining filings while
-          maintaining rigorous compliance.
-        </p>
-        <div class="inline-flex items-center gap-3">
-          <a href="/case-studies/tax-platform" class="text-[#93C5FD] text-xl leading-7">Learn more</a>
-          <img src="/services/agc.svg" alt="arrow" />
-        </div>
-      </div>
-
-      <!-- NEW: Hotel & Resort Chatbots -->
-      <div class="flex flex-col gap-5 px-2 md:px-6 py-6 rounded-3xl border border-white/10 bg-white/0">
-        <p class="text-lg font-normal">
-          For multiple hotels and resorts, our team deployed multilingual AI concierges across web,
-          WhatsApp, and Facebook—answering FAQs, handling bookings, and deflecting routine support,
-          all while integrating with property systems for accurate, real-time info.
-        </p>
-        <div class="inline-flex items-center gap-3">
-          <a href="/case-studies/hotel-chatbots" class="text-[#93C5FD] text-xl leading-7">Learn more</a>
-          <img src="/services/agc.svg" alt="arrow" />
-        </div>
-      </div>
-
-      <!-- NEW: Media Monitoring & Sentiment (Amharic + English) -->
-      <div class="flex flex-col gap-5 px-2 md:px-6 py-6 rounded-3xl border border-white/10 bg-white/0">
-        <p class="text-lg font-normal">
-          For a media group, we engineered a social listening and monitoring system that tracks
-          coverage in Amharic and English, surfaces sentiment trends, and identifies optimal posting
-          windows—informing content and ad spend with data-driven insights.
-        </p>
-        <div class="inline-flex items-center gap-3">
-          <a href="/case-studies/media-monitoring" class="text-[#93C5FD] text-xl leading-7">Learn more</a>
-          <img src="/services/agc.svg" alt="arrow" />
-        </div>
-      </div>
-
-      <!-- Optional: Education AI Pipelines -->
-      <div class="flex flex-col gap-5 px-2 md:px-6 py-6 rounded-3xl border border-white/10 bg-white/0">
-        <p class="text-lg font-normal">
-          For an EdTech initiative, we built AI pipelines for story and assignment generation, added
-          grammar validation, and ensured alignment to curriculum via retrieval-augmented generation
-          and quality checks—delivering consistent, safe content at scale.
-        </p>
-        <div class="inline-flex items-center gap-3">
-          <a href="/case-studies/edtech-ai" class="text-[#93C5FD] text-xl leading-7">Learn more</a>
-          <img src="/services/agc.svg" alt="arrow" />
-        </div>
-      </div>
+  {/* The 'py-10' provides vertical spacing, replacing the space-y-20 from the main layout */}
+  <section id="projects" class="py-10" style="font-family: 'Space Grotesk', sans-serif;">
+    <div class="text-center">
+      <Topic
+        title="Case Studies"
+        description="Explore Real-Life Examples of Our Proven Digital & AI Success"
+      />
     </div>
-  </div>
+
+    {/* The grid now sits directly on the page's default light background */}
+    <div class="mt-16 grid max-w-5xl mx-auto grid-cols-1 md:grid-cols-2 gap-8">
+      {caseStudies.map((study) => (
+        <div class="group flex flex-col rounded-xl border border-slate-200 bg-white/80 backdrop-blur-sm p-8 transition-all duration-300 hover:bg-white hover:shadow-2xl hover:shadow-blue-600/10 hover:border-blue-300 hover:-translate-y-2">
+          <div class="flex-grow">
+            <h4 class="text-xl font-bold text-slate-900 mb-3">{study.title}</h4>
+            <p class="text-slate-600 leading-relaxed">
+              {study.description}
+            </p>
+          </div>
+          
+          <a href={study.href} class="group mt-6 inline-flex items-center gap-3 font-semibold text-blue-600 transition-colors hover:text-blue-800">
+            Learn more
+            <span class="transition-transform group-hover:translate-x-1">&rarr;</span>
+          </a>
+        </div>
+      ))}
+    </div>
+  </section>
 </Container>

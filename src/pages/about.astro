@@ -1,52 +1,83 @@
 ---
-import Container from "../components/Container.astro"
 import Layout from '../layouts/Layout.astro';
-import Team from "../components/Team.astro";
+import Container from '../components/Container.astro';
 ---
 
-<Layout title="Welcome to My site">
-	<main class="space-y-20">
-		<Container>
-            <div class="relative flex flex-col-reverse items-center md:flex-row" id="hero">
-                <div class="row items-center py-5 md:pb-20 md:pt-10">
-                    <div class="text-center space-y-10">
-                        <h2 class="text-5xl font-medium leading-none md:text-6xl">We Transform Ideas<br> into Impactful<br> Digital Products</h2>
-                        <p class="mt-6 mb-8  text-xl font-normal leading-7 sm:mb-12">Addition+ is a team of passionate digital experts dedicated to creating impactful solutions across web, mobile, and AI technologies. With a focus on innovation and precision, we bring together the best tools and talent to turn your ideas into powerful digital products.</p>
-                        <a class="px-9 py-5 bg-zinc-900 hover:bg-white text-white hover:text-black border rounded-2xl justify-items-center md:justify-items-start gap-2.5 inline-flex"
-                            rel="noopener noreferrer"
-                            href="#"
-                            target="_blank">
-                            <h2 class="text-center text-xl font-normal leading-7">Get A Free Quote</h2>
-                        </a>
-                    </div>
+<Layout title="About Addition+">
+  <main style="font-family: 'Space Grotesk', sans-serif;">
+    
+    <!-- About Us Hero Section -->
+    <section class="py-24 sm:py-32 bg-slate-50 dark:bg-slate-900">
+      <Container>
+        <div class="max-w-4xl mx-auto text-center">
+          <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-5xl md:text-6xl">
+            We're a Team of Innovators Building the Future of Digital Products.
+          </h1>
+          <p class="mt-6 text-lg text-slate-600 dark:text-slate-400">
+            Addition+ is a team of passionate digital experts dedicated to creating impactful solutions across web, mobile, and AI technologies. With a focus on innovation and precision, we bring together the best tools and talent to turn your ideas into powerful digital products.
+          </p>
+          <a href="/requestQuote" class="mt-8 inline-block rounded-lg bg-blue-600 px-8 py-3 text-lg font-semibold text-white transition-all duration-300 hover:bg-blue-700 hover:shadow-md">
+            Get A Free Quote
+          </a>
+        </div>
+      </Container>
+    </section>
+
+    <!-- Our Mission & Vision Section -->
+    <section class="py-24 sm:py-32">
+        <Container>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">Our Mission</h2>
+                    <p class="mt-4 text-slate-600 dark:text-slate-400">
+                        Our mission is to empower businesses with transformative technology. We strive to be more than just a service provider; we aim to be a dedicated partner in our clients' success, delivering solutions that drive growth, efficiency, and a competitive edge in the digital landscape.
+                    </p>
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">Our Vision</h2>
+                    <p class="mt-4 text-slate-600 dark:text-slate-400">
+                        We envision a future where technology is a seamless and powerful extension of every business's strategy. Our goal is to be at the forefront of this change, pioneering innovative AI and software solutions that are not only intelligent but also intuitive and accessible to all.
+                    </p>
                 </div>
             </div>
-
-            <!-- <div class="flex-row items-center">
-                <div class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-6">
-                    <div class="p-4 grayscale transition duration-200 hover:grayscale-0">
-                        <img src="./clients/01.svg" class="h-12 w-auto mx-auto" loading="lazy" alt="client logo" width="" height="" />
-                    </div>
-                    <div class="p-4 grayscale transition duration-200 hover:grayscale-0">
-                        <img src="./clients/02.svg" class="h-12 w-auto mx-auto" loading="lazy" alt="client logo" width="" height="" />
-                    </div>
-                    <div class="p-4 flex grayscale transition duration-200 hover:grayscale-0">
-                        <img src="./clients/03.svg" class="h-9 w-auto m-auto" loading="lazy" alt="client logo" width="" height="" />
-                    </div>
-                    <div class="p-4 grayscale transition duration-200 hover:grayscale-0">
-                        <img src="./clients/04.svg" class="h-12 w-auto mx-auto" loading="lazy" alt="client logo" width="" height="" />
-                    </div>
-                    <div class="p-4 flex grayscale transition duration-200 hover:grayscale-0">
-                        <img src="./clients/05.svg" class="h-8 w-auto m-auto" loading="lazy" alt="client logo" width="" height="" />
-                    </div>
-                    <div class="p-4 grayscale transition duration-200 hover:grayscale-0">
-                        <img src="./clients/06.svg" class="h-12 w-auto mx-auto" loading="lazy" alt="client logo" width="" height="" />
-                    </div>
-                </div>
-            </div> -->
         </Container>
-        <br>
-        <!-- <Team/> -->
-        <br>
-	</main>
+    </section>
+
+    <!-- Values Section -->
+    <section class="py-24 sm:py-32 bg-slate-50 dark:bg-slate-900">
+        <Container>
+            <div class="mx-auto max-w-2xl text-center">
+                <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">Why Partner With Us?</h2>
+                <p class="mt-4 text-lg text-slate-600 dark:text-slate-400">Our work is guided by a core set of values that define who we are.</p>
+            </div>
+            <div class="mx-auto mt-16 grid max-w-lg grid-cols-1 gap-8 sm:max-w-none sm:grid-cols-3">
+                <div class="flex flex-col items-center text-center p-6">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100 text-blue-600">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.311a15.045 15.045 0 01-7.5 0C4.508 17.627 2.25 14.434 2.25 10.5c0-1.52.26-2.98.722-4.394m15.556 4.394c.462 1.415.722 2.874.722 4.394 0 3.934-2.258 7.127-5.278 8.423z"></path></svg>
+                    </div>
+                    <h3 class="mt-5 text-lg font-semibold text-slate-900 dark:text-white">Innovation</h3>
+                    <p class="mt-2 text-base text-slate-600 dark:text-slate-400">We constantly explore new technologies to deliver cutting-edge solutions.</p>
+                </div>
+                <div class="flex flex-col items-center text-center p-6">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100 text-blue-600">
+                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.092 1.21-.138 2.43-.138 3.662v.513a5.034 5.034 0 002.24 4.223l.18.101a8.96 8.96 0 006.942 0l.18-.101a5.034 5.034 0 002.24-4.223v-.513z" /></svg>
+                    </div>
+                    <h3 class="mt-5 text-lg font-semibold text-slate-900 dark:text-white">Quality</h3>
+                    <p class="mt-2 text-base text-slate-600 dark:text-slate-400">We are committed to excellence and deliver robust, reliable, and scalable products.</p>
+                </div>
+                <div class="flex flex-col items-center text-center p-6">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100 text-blue-600">
+                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" /></svg>
+                    </div>
+                    <h3 class="mt-5 text-lg font-semibold text-slate-900 dark:text-white">Partnership</h3>
+                    <p class="mt-2 text-base text-slate-600 dark:text-slate-400">We work collaboratively with our clients, building strong relationships based on trust.</p>
+                </div>
+            </div>
+        </Container>
+    </section>
+
+    <!-- Team Section -->
+    
+
+  </main>
 </Layout>

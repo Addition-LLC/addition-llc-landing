@@ -1,60 +1,134 @@
 ---
-import Container from "./Container.astro"
+// src/components/Services.astro
+
+import Container from "./Container.astro";
 import Topic from "./Topic.astro";
 import servicesData from './Data/services.json';
+
+const serviceIcons = [
+  // AI & Automation
+  `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>`,
+  // Custom Software
+  `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z" /></svg>`,
+  // Mobile App Development
+  `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" /></svg>`,
+  // Cloud & IT Infrastructure
+  `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75l14.25-1.5m-14.25 1.5l14.25 1.5M2.25 12.75h19.5m-19.5 0v.243a2.25 2.25 0 00.75 1.757l3 2.25a2.25 2.25 0 002.5.243m-5.25 0a2.25 2.25 0 01-1.5-2.243v-2.243c0-.59.29-1.128.75-1.488l3-2.25a2.25 2.25 0 012.5.243m-5.25 0a2.25 2.25 0 00.75 1.757l3 2.25a2.25 2.25 0 002.5.243m0 0l3-2.25a2.25 2.25 0 00.75-1.757v-.243" /></svg>`,
+];
 ---
+
 <Container>
-<div class="relative flex flex-col items-center md:flex-row" id="services">
-    <Topic title="Our Services" description="Our digital marketing agency helps businesses grow and succeed online through a range of services including SEO, PPC, social media marketing, and content creation">
-</div>
-
-<div class="flex-row items-center py-5">
-    <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4">
-
-        <!-- card start-->
-        {
-        servicesData.map(({ background, name1, name2, arrow, link, image} ) => (
-        <div class={background}>
-            <div class="flex-col justify-center items-start gap-[93px] inline-flex">
-                <div class="flex-col justify-start items-start flex">
-                    <div class="px-[7px] bg-lime-300 rounded-[7px] flex-col justify-start items-start gap-2.5 flex">
-                        <div class=" text-3xl font-medium">{name1}</div>
-                    </div>
-                    <div class="px-[7px] bg-lime-300 rounded-[7px] flex-col justify-start items-start gap-2.5 flex">
-                        <div class="text-3xl font-medium">{name2}</div>
-                    </div>
-                </div>
-                <a class="justify-start items-center gap-[15px] inline-flex" href={link}>
-                    <div class="w-[41px] h-[41px] relative">
-                        <img class="w-[41px] h-[41px] left-0 top-0 absolute" src={arrow} />
-                    </div>
-                    <div class="text-xl font-normal leading-7">Learn more</div>
-                </a>
-            </div>
-            <div class="w-[210px] h-[170px] pt-0.5 pb-[1.95px] justify-center items-center flex">
-                <img class="hidden md:block" src={image} />
-            </div>
-        </div>
-        ))
-        }
-        <!-- card end-->
+  <section 
+    id="services" 
+    class="py-10"
+    style="font-family: 'Space Grotesk', sans-serif;"
+  >
+    <div class="text-center">
+      <Topic 
+        title="Our Services" 
+        description="We deliver innovative digital solutions to help your business grow. From AI-powered apps to cloud support, we build tools for success."
+      />
     </div>
-</div>
 
-<div class="flex-row items-center my-6 p-14 bg-zinc-100 rounded-[45px]">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="justify-start items-center gap-[275px] flex">
-            <div class="flex-col justify-start items-start gap-[26px] inline-flex text-black">
-                <div class="text-3xl font-medium">Ready to Transform Your Vision into Reality?</div>
-                <div class="text-lg font-normal">Bring your ideas to life with our expert digital solutions. Let’s start building something exceptional together.</div>
-                <a href="/" class="px-[35px] py-5 bg-zinc-900 hover:bg-white text-white hover:text-black border rounded-[14px] justify-start items-start gap-2.5 inline-flex">
-                    <div class="text-center text-xl font-normal leading-7">Get Your Free Quote Now</div>
-                </a>
-            </div>
+    <div class="mt-16 grid max-w-4xl mx-auto grid-cols-1 md:grid-cols-2 gap-8">
+      {servicesData.map((service, index) => (
+        <div class="group flex flex-col rounded-xl border border-slate-200 bg-white/80 backdrop-blur-sm p-8 transition-all duration-300 hover:bg-white hover:shadow-2xl hover:shadow-blue-600/10 hover:border-blue-300 hover:-translate-y-2">
+          
+          <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100 mb-6">
+            <div class="h-6 w-6 text-blue-600" set:html={serviceIcons[index]} />
+          </div>
+
+          <div class="flex-grow">
+            <h3 class="text-xl font-bold text-slate-900">{service.title}</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">{service.shortDescription}</p>
+          </div>
+          
+          <div class="mt-6">
+            <button 
+              data-modal-content={service.longDescription}
+              data-modal-title={service.title}
+              class="learn-more-btn group inline-flex items-center gap-2 font-semibold text-blue-600 transition-colors hover:text-blue-800"
+            >
+              Learn more
+              <span class="transform transition-transform duration-200 group-hover:translate-x-1">&rarr;</span>
+            </button>
+          </div>
         </div>
-        <div class="hidden md:grid justify-items-center -m-20">
-            <img src="/services/Illustration.svg" width="50%" alt="cat"/>
-        </div>
+      ))}
     </div>
-</div>
+  </section>
 </Container>
+
+{/* Modal (no changes needed) */}
+<div id="service-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
+  <div id="modal-content" class="bg-white rounded-lg shadow-xl p-8 max-w-2xl w-11/12 transform transition-all duration-300 scale-95 opacity-0">
+    <div class="flex justify-between items-center">
+      <h2 id="modal-title" class="text-2xl font-bold text-slate-900" style="font-family: 'Space Grotesk', sans-serif;"></h2>
+      <button id="modal-close-btn" class="text-slate-400 hover:text-slate-800 text-3xl leading-none">&times;</button>
+    </div>
+    <hr class="my-4 border-slate-200">
+    <p id="modal-description" class="text-slate-600 leading-relaxed whitespace-pre-line" style="font-family: 'Space Grotesk', sans-serif;"></p>
+  </div>
+</div>
+
+{/* Script (no changes needed) */}
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('service-modal');
+    const modalContent = document.getElementById('modal-content');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDescription = document.getElementById('modal-description');
+    const learnMoreButtons = document.querySelectorAll('.learn-more-btn');
+    const closeModalBtn = document.getElementById('modal-close-btn');
+
+    const openModal = (title: string, content: string) => {
+      if (modalTitle) modalTitle.textContent = title;
+      if (modalDescription) modalDescription.textContent = content;
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+      }
+      setTimeout(() => {
+        if (modalContent) modalContent.classList.remove('scale-95', 'opacity-0');
+      }, 50);
+    };
+
+    const closeModal = () => {
+      if (modalContent) modalContent.classList.add('scale-95', 'opacity-0');
+      setTimeout(() => {
+        if (modal) {
+          modal.classList.add('hidden');
+          modal.classList.remove('flex');
+          document.body.style.overflow = '';
+        }
+      }, 300);
+    };
+
+    learnMoreButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const title = btn.getAttribute('data-modal-title');
+        const content = btn.getAttribute('data-modal-content');
+        if (title && content) {
+          openModal(title, content);
+        }
+      });
+    });
+
+    if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+
+    if (modal) {
+      modal.addEventListener('click', (event) => {
+        if (event.target === modal) {
+          closeModal();
+        }
+      });
+    }
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !modal?.classList.contains('hidden')) {
+        closeModal();
+      }
+    });
+  });
+</script>
