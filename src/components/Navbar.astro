@@ -22,7 +22,8 @@ const navButton = { href: '/requestQuote', label: 'Request a quote' };
     <nav id="desktop-nav" class="hidden lg:flex items-center justify-center absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
       <div id="nav-indicator" class="absolute h-10 bg-blue-100 dark:bg-slate-700 rounded-full transition-all duration-300 ease-out"></div>
       {menuItems.map(item => (
-        <a href={item.href} class="nav-link relative z-10 px-5 py-2 text-sm font-semibold leading-6 text-slate-800 hover:text-blue-600 dark:text-slate-200 dark:hover:text-white transition-colors duration-200">
+        // FIX: Replaced 'text-slate-800' with 'text-stone' and 'dark:text-slate-200' with 'dark:text-white'
+        <a href={item.href} class="nav-link relative z-10 px-5 py-2 text-sm font-semibold leading-6 text-stone hover:text-blue-600 dark:text-white dark:hover:text-blue-300 transition-colors duration-200">
           {item.label}
         </a>
       ))}
@@ -50,12 +51,12 @@ const navButton = { href: '/requestQuote', label: 'Request a quote' };
         <svg id="theme-icon-dark-mobile" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" /></svg>
       </button>
 
-      <button id="menu-toggle" type="button" class="inline-flex items-center justify-center rounded-md text-slate-800 dark:text-slate-200 h-10 w-10">
+      <button id="menu-toggle" type="button" class="inline-flex items-center justify-center rounded-md text-stone dark:text-white h-10 w-10">
         <span class="sr-only">Open main menu</span>
         <div class="space-y-1.5">
-          <span class="block w-6 h-0.5 bg-slate-800 dark:bg-slate-200 transition-all duration-300 ease-out"></span>
-          <span class="block w-6 h-0.5 bg-slate-800 dark:bg-slate-200 transition-all duration-300 ease-out"></span>
-          <span class="block w-4 h-0.5 bg-slate-800 dark:bg-slate-200 transition-all duration-300 ease-out"></span>
+          <span class="block w-6 h-0.5 bg-stone dark:bg-white transition-all duration-300 ease-out"></span>
+          <span class="block w-6 h-0.5 bg-stone dark:bg-white transition-all duration-300 ease-out"></span>
+          <span class="block w-4 h-0.5 bg-stone dark:bg-white transition-all duration-300 ease-out"></span>
         </div>
       </button>
     </div>
@@ -78,11 +79,11 @@ const navButton = { href: '/requestQuote', label: 'Request a quote' };
         <div class="-my-6 divide-y divide-gray-500/10 dark:divide-gray-200/10">
           <div class="space-y-2 py-6">
             {menuItems.map(item => (
-              <a href={item.href} class="nav-link -mx-3 block rounded-lg px-3 py-3 text-base font-semibold leading-7 text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800">{item.label}</a>
+              <a href={item.href} class="nav-link -mx-3 block rounded-lg px-3 py-3 text-base font-semibold leading-7 text-stone dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800">{item.label}</a>
             ))}
           </div>
           <div class="py-6">
-            <a href={navButton.href} class="-mx-3 block rounded-lg px-3 py-4 text-base font-semibold leading-7 text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800">{navButton.label}</a>
+            <a href={navButton.href} class="-mx-3 block rounded-lg px-3 py-4 text-base font-semibold leading-7 text-stone dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800">{navButton.label}</a>
           </div>
         </div>
       </div>
