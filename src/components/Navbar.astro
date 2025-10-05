@@ -1,5 +1,4 @@
 ---
-// FIX: Added "Case Studies" to the menu.
 const menuItems = [
   { href: '/about', label: 'About us' },
   { href: '/#services', label: 'Services' },
@@ -20,22 +19,15 @@ const navButton = { href: '/requestQuote', label: 'Request a quote' };
     </a>
 
     <nav id="desktop-nav" class="hidden lg:flex items-center justify-center absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-      <div id="nav-indicator" class="absolute h-10 bg-blue-100 dark:bg-slate-700 rounded-full transition-all duration-300 ease-out"></div>
+      <div id="nav-indicator" class="absolute h-10 bg-blue-100 rounded-full transition-all duration-300 ease-out"></div>
       {menuItems.map(item => (
-        // FIX: Replaced 'text-slate-800' with 'text-stone' and 'dark:text-slate-200' with 'dark:text-white'
-        <a href={item.href} class="nav-link relative z-10 px-5 py-2 text-sm font-semibold leading-6 text-stone hover:text-blue-600 dark:text-white dark:hover:text-blue-300 transition-colors duration-200">
+        <a href={item.href} class="nav-link relative z-10 px-5 py-2 text-sm font-semibold leading-6 text-stone hover:text-blue-600 transition-colors duration-200">
           {item.label}
         </a>
       ))}
     </nav>
 
-    <div class="hidden lg:flex items-center gap-x-5 z-10">
-      <button id="theme-toggle" type="button" class="h-10 w-10 flex items-center justify-center rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
-        <span class="sr-only">Toggle theme</span>
-        <svg id="theme-icon-light" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.95-4.243l-1.59-1.591M5.25 12H3m4.243-4.95l-1.59-1.591M12 9a3 3 0 100 6 3 3 0 000-6z" /></svg>
-        <svg id="theme-icon-dark" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" /></svg>
-      </button>
-
+    <div class="hidden lg:flex z-10">
       <a 
         href={navButton.href} 
         class="rounded-full bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 hover:bg-blue-700 transition-all hover:scale-105"
@@ -44,19 +36,13 @@ const navButton = { href: '/requestQuote', label: 'Request a quote' };
       </a>
     </div>
 
-    <div class="flex items-center gap-x-2 lg:hidden z-10">
-      <button id="theme-toggle-mobile" type="button" class="h-10 w-10 flex items-center justify-center rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
-        <span class="sr-only">Toggle theme</span>
-        <svg id="theme-icon-light-mobile" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.95-4.243l-1.59-1.591M5.25 12H3m4.243-4.95l-1.59-1.591M12 9a3 3 0 100 6 3 3 0 000-6z" /></svg>
-        <svg id="theme-icon-dark-mobile" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" /></svg>
-      </button>
-
-      <button id="menu-toggle" type="button" class="inline-flex items-center justify-center rounded-md text-stone dark:text-white h-10 w-10">
+    <div class="lg:hidden z-10">
+      <button id="menu-toggle" type="button" class="inline-flex items-center justify-center rounded-md text-stone h-10 w-10">
         <span class="sr-only">Open main menu</span>
         <div class="space-y-1.5">
-          <span class="block w-6 h-0.5 bg-stone dark:bg-white transition-all duration-300 ease-out"></span>
-          <span class="block w-6 h-0.5 bg-stone dark:bg-white transition-all duration-300 ease-out"></span>
-          <span class="block w-4 h-0.5 bg-stone dark:bg-white transition-all duration-300 ease-out"></span>
+          <span class="block w-6 h-0.5 bg-stone transition-all duration-300 ease-out"></span>
+          <span class="block w-6 h-0.5 bg-stone transition-all duration-300 ease-out"></span>
+          <span class="block w-4 h-0.5 bg-stone transition-all duration-300 ease-out"></span>
         </div>
       </button>
     </div>
@@ -65,25 +51,25 @@ const navButton = { href: '/requestQuote', label: 'Request a quote' };
 
   <div id="mobile-menu" class="fixed inset-0 z-40 hidden" role="dialog" aria-modal="true">
     <div id="mobile-menu-backdrop" class="fixed inset-0 bg-black/30 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
-    <div id="mobile-menu-panel" class="fixed inset-y-0 right-0 z-50 w-full max-w-sm bg-white dark:bg-slate-900 p-6 transition-transform duration-300 translate-x-full">
+    <div id="mobile-menu-panel" class="fixed inset-y-0 right-0 z-50 w-full max-w-sm bg-white p-6 transition-transform duration-300 translate-x-full">
       <div class="flex items-center justify-between">
         <a href="/">
           <img class="h-8 w-auto" src="/Logo.svg" alt="Addition+ Logo">
         </a>
-        <button id="menu-close" type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700 dark:text-gray-300">
+        <button id="menu-close" type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700">
           <span class="sr-only">Close menu</span>
           <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         </button>
       </div>
       <div class="mt-8 flow-root">
-        <div class="-my-6 divide-y divide-gray-500/10 dark:divide-gray-200/10">
+        <div class="-my-6 divide-y divide-gray-500/10">
           <div class="space-y-2 py-6">
             {menuItems.map(item => (
-              <a href={item.href} class="nav-link -mx-3 block rounded-lg px-3 py-3 text-base font-semibold leading-7 text-stone dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800">{item.label}</a>
+              <a href={item.href} class="nav-link -mx-3 block rounded-lg px-3 py-3 text-base font-semibold leading-7 text-stone hover:bg-gray-50">{item.label}</a>
             ))}
           </div>
           <div class="py-6">
-            <a href={navButton.href} class="-mx-3 block rounded-lg px-3 py-4 text-base font-semibold leading-7 text-stone dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800">{navButton.label}</a>
+            <a href={navButton.href} class="-mx-3 block rounded-lg px-3 py-4 text-base font-semibold leading-7 text-stone hover:bg-gray-50">{navButton.label}</a>
           </div>
         </div>
       </div>
@@ -93,28 +79,6 @@ const navButton = { href: '/requestQuote', label: 'Request a quote' };
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Theme toggle functionality ---
-    const themeToggles = document.querySelectorAll('#theme-toggle, #theme-toggle-mobile');
-    const lightIcons = document.querySelectorAll('#theme-icon-light, #theme-icon-light-mobile');
-    const darkIcons = document.querySelectorAll('#theme-icon-dark, #theme-icon-dark-mobile');
-
-    const updateIcons = (theme: string) => {
-        lightIcons.forEach(icon => icon.classList.toggle('hidden', theme === 'dark'));
-        darkIcons.forEach(icon => icon.classList.toggle('hidden', theme === 'light'));
-    };
-    
-    const toggleTheme = () => {
-        const isDark = document.documentElement.classList.toggle('dark');
-        const newTheme = isDark ? 'dark' : 'light';
-        localStorage.setItem('theme', newTheme);
-        updateIcons(newTheme);
-    };
-
-    themeToggles.forEach(btn => btn.addEventListener('click', toggleTheme));
-
-    const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    updateIcons(currentTheme);
-
   const header = document.getElementById('main-header');
   const navContent = document.getElementById('nav-content');
 
@@ -187,18 +151,15 @@ document.addEventListener('DOMContentLoaded', () => {
     mobileMenuBackdrop.addEventListener('click', closeMenu);
   }
 
-  // --- FINAL FIX: Robust smooth-scroll functionality that prevents scroll-locking ---
   const allNavLinks = document.querySelectorAll('a.nav-link');
   allNavLinks.forEach(link => {
     link.addEventListener('click', (e) => {
       const anchor = link as HTMLAnchorElement;
       const href = anchor.getAttribute('href');
 
-      // Check if it's an in-page hash link for the homepage (e.g., '/#services')
       if (href && href.startsWith('/#')) {
-        // If we are already on the homepage, handle the smooth scroll
         if (window.location.pathname === '/') {
-            e.preventDefault(); // This is the key: stop the browser's default jump
+            e.preventDefault();
             
             const targetId = href.substring(2);
             const targetElement = document.getElementById(targetId);
@@ -206,15 +167,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (targetElement) {
                 targetElement.scrollIntoView({
                     behavior: 'smooth',
-                    block: 'start' // Aligns the top of the element to the top of the viewport
+                    block: 'start'
                 });
             }
         }
-        // If on another page (e.g., /about), the link will navigate to the homepage
-        // and the browser will handle jumping to the hash.
       }
       
-      // For all link clicks, close the mobile menu if it's open
       if (!mobileMenu?.classList.contains('hidden')) {
         closeMenu();
       }
@@ -231,11 +189,6 @@ document.addEventListener('DOMContentLoaded', () => {
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 9999px;
-  }
-
-  .dark #main-header.scrolled #nav-content {
-    background-color: rgba(30, 41, 59, 0.75);
-    border-color: rgba(51, 65, 85, 0.5);
   }
 
   #nav-indicator {
