@@ -50,7 +50,26 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             set -e
+            
+            APP_DIR="/home/blk/addition"
+            
+            # Ensure addition directory exists
+            if [ ! -d "$APP_DIR" ]; then
+              echo "Cloning repo for the first time..."
+              git clone git@github.com:${{ github.repository }} /home/blk/addition
+            fi
 
+            cd "$APP_DIR"
+            
+            git checkout production
+            
+            GIT_SSH_COMMAND="ssh -i ~/.ssh/addition_landing_key" git fetch --all
+            GIT_SSH_COMMAND="ssh -i ~/.ssh/addition_landing_key" git reset --hard origin/production
+            
+            # Fix PATH issue for non-interactive SSH sessions
+            export PATH=$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.npm-global/bin:$HOME/.nvm/versions/node/v22.22.0/bin
+
+            # Verify node and npm exist in PATH
             echo "🔍 Checking Node.js and npm..."
             # Load NVM and Node
             export NVM_DIR="$HOME/.nvm"
@@ -59,28 +78,27 @@ jobs:
             
             # Use the installed Node version
             nvm use 22
+            
+            which node || { echo "❌ Node.js not found in PATH. Exiting."; exit 1; }
+            which npm || { echo "❌ npm not found in PATH. Exiting."; exit 1; }
+            node -v || { echo "❌ Node.js not installed. Exiting."; exit 1; }
+            npm -v || { echo "❌ npm not installed. Exiting."; exit 1; }
 
-            # Ensure backend directory exists
-            if [ ! -d /home/blk/addition ]; then
-              echo "Cloning repo for the first time..."
-              git clone git@github.com:${{ github.repository }} /home/blk/addition
+            # Ensure PM2 is installed
+            if ! command -v pm2 &> /dev/null; then
+              echo "⚠ PM2 not found! Installing..."
+              npm install -g pm2
             fi
 
-            cd ~/addition
-            echo "Pulling latest code..."
-            git pull origin main
+            cd "$APP_DIR" || { echo "❌ Directory not found! Exiting."; exit 1; }
 
-            echo "Installing dependencies..."
-            npm ci
+                        # Install dependencies
+            echo "📦 Installing dependencies..."
+            npm ci || { echo "❌ npm ci failed! Exiting."; exit 1; }
+            npm run build || { echo "❌ npm run build failed! Exiting."; exit 1; }
 
-            echo "Building project..."
-            npm run build
+            # Restart or start the Astro.js app
+            echo "🚀 Restarting PM2 process..."
+            pm2 restart addition || pm2 start npm --name addition -- start
 
-            echo "Restarting with PM2..."
-            if pm2 describe addition > /dev/null; then
-              pm2 restart addition
-            else
-              pm2 start "npm run start" --name addition
-            fi
-
-            pm2 save
+            echo "✅ Successfully Deployed additionplus landing page"
