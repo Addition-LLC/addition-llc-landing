@@ -3,26 +3,113 @@ import "../styles/global.css";
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import { ViewTransitions } from 'astro:transitions';
+
+// --- DYNAMIC SEO PROPS ---
+// This allows each page to have a unique title and description for optimal SEO.
+export interface Props {
+    title?: string;
+    description?: string;
+    image?: string;
+}
+
+const defaultTitle = 'Addition+ | Digital Innovation, Redefined.';
+const defaultDescription = 'We transform ideas into powerful digital experiences. From custom web and mobile solutions to AI-driven innovations, we bring your vision to life with precision and passion.';
+const defaultImage = '/social-preview.png'; // A default social sharing image
+
+const { 
+    title = defaultTitle, 
+    description = defaultDescription,
+    image = defaultImage 
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Addition +</title>
-    <meta
-      name="description"
-      content="Official website of Addition Plus LLC."
-    />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
-    <ViewTransitions />
+<html lang="en" class="scroll-smooth">
+  <head>
+    <!-- ============== PRIMARY META TAGS ============== -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- ============== FAVICON & THEME ============== -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#2563eb"> {/* Blue-600 */}
+
+    <!-- ============== FONT IMPORTS ============== -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
     
-    {/* FIX: Added the critical inline script to prevent theme flashing */}
+    <!-- ============== OPEN GRAPH (FOR FACEBOOK, LINKEDIN, ETC.) ============== -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:site_name" content="Addition+" />
+    <meta property="og:image" content={new URL(image, Astro.site)} />
+    <meta property="og:image:alt" content="A preview of the Addition+ website" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- ============== TWITTER CARD (FOR X) ============== -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(image, Astro.site)} />
+    <meta name="twitter:image:alt" content="A preview of the Addition+ website" />
+    {/* Optional: <meta name="twitter:site" content="@YourTwitterHandle"> */}
+    {/* Optional: <meta name="twitter:creator" content="@YourTwitterHandle"> */}
+
+    <!-- ============== ADVANCED SEO & CRAWLER DIRECTIVES ============== -->
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Addition+" />
+    <meta name="keywords" content="AI solutions, automation, custom software, web applications, mobile app development, iOS, Android, cloud services, IT infrastructure, DevOps, API integration, SaaS development, Delaware, technology company" />
+
+    <ViewTransitions />
+    
+    {/* This script tells Google EXACTLY who you are, what you do, and how to reach you. */}
+    <script type="application/ld+json" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Addition+",
+      "alternateName": "Addition Plus Technologies",
+      "url": "https://www.additionplus.ai/", // Replace with your actual domain
+      "logo": "https://www.additionplus.ai/Logo.svg", // Replace with your actual domain
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+1-507-481-4830",
+        "contactType": "customer service",
+        "areaServed": "US",
+        "availableLanguage": ["en"]
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "131 Continental Dr, Suite 305",
+        "addressLocality": "Newark",
+        "addressRegion": "DE",
+        "postalCode": "19713",
+        "addressCountry": "US"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/company/additionplus-technologies/", // Replace with your actual social links
+        "https://twitter.com/YourHandle",
+        "https://www.facebook.com/YourPage"
+      ],
+      "description": "Addition+ delivers innovative digital solutions designed to help businesses grow, automate processes, and scale with confidence. Our core services include AI-powered solutions, custom software, mobile apps, and cloud infrastructure support."
+    }
+    </script>
+    
     <script is:inline>
+      // This script handles theme switching and prevents flashing
       const getTheme = () => {
         if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
           return localStorage.getItem('theme');
@@ -41,13 +128,12 @@ import { ViewTransitions } from 'astro:transitions';
         document.documentElement.classList.remove('dark');
       }
     </script>
-  </head>
+  </head>
 
-  {/* FIX: Added dark mode classes and a transition to the body tag */}
-  <body class="bg-white dark:bg-slate-900 font-SpaceGrotesk transition-colors duration-300" style="scroll-behavior: smooth;">
-    <Navbar />
-    <slot />
-    <Footer/>
-  </body>
+  <body class="bg-white dark:bg-slate-900 font-SpaceGrotesk transition-colors duration-300">
+    <Navbar />
+    <slot />
+    <Footer/>
+  </body>
 </html>
 
