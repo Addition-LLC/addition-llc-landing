@@ -100,6 +100,6 @@ jobs:
 
             # Restart or start the Astro.js app
             echo "🚀 Restarting PM2 process..."
-            pm2 restart addition || pm2 start "npm run preview" --name addition -- start
+            pm2 restart addition || pm2 start "npm run dev" --name addition -- start
 
             echo "✅ Successfully Deployed additionplus landing page"
