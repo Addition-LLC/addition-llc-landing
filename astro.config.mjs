@@ -24,5 +24,8 @@ export default defineConfig({
 
   adapter: node({
     mode: 'middleware'
-  })
+  }),
+  server: {
+    allowedHosts: ['localhost', '127.0.0.1', 'additionplus.ai', 'www.additionplus.ai'],
+  },
 });
