@@ -28,18 +28,18 @@ jobs:
           npm run build
 
       # 4️⃣ Upload build files to VPS
-      - name: Upload Built Files to VPS
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "dist/*"
-          target: "/home/blk/landing"
-          strip_components: 1
-          overwrite: true
-          rm: true
-          port: 22
+      # - name: Upload Built Files to VPS
+      #   uses: appleboy/scp-action@v0.1.7
+      #   with:
+      #     host: ${{ secrets.VPS_HOST }}
+      #     username: ${{ secrets.VPS_USERNAME }}
+      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
+      #     source: "dist/*"
+      #     target: "/home/blk/landing"
+      #     strip_components: 1
+      #     overwrite: true
+      #     rm: true
+      #     port: 22
 
       # 5️⃣ Restart Nginx or your app process
       - name: Restart Services on VPS
@@ -96,9 +96,10 @@ jobs:
             echo "📦 Installing dependencies..."
             npm ci || { echo "❌ npm ci failed! Exiting."; exit 1; }
             npm run build || { echo "❌ npm run build failed! Exiting."; exit 1; }
+            
 
             # Restart or start the Astro.js app
             echo "🚀 Restarting PM2 process..."
-            pm2 restart addition || pm2 start "node ./dist/server/entry.mjs" --name addition -- start
+            pm2 restart addition || pm2 start "npm run preview" --name addition -- start
 
             echo "✅ Successfully Deployed additionplus landing page"
