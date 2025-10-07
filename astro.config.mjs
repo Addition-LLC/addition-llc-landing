@@ -1,7 +1,5 @@
 import { defineConfig } from 'astro/config';
-
 import tailwind from "@astrojs/tailwind";
-
 import node from '@astrojs/node';
 
 // Import the Vercel adapter
@@ -14,7 +12,7 @@ export default defineConfig({
 
   // adapter: vercel(),
   // adapter:
-  site: 'https://Addition-llc.github.io',
+  site: 'https://additionplus.ai',
 
   outDir: './dist',
 
@@ -24,5 +22,15 @@ export default defineConfig({
 
   adapter: node({
     mode: 'middleware'
-  })
+  }),
+
+  // Add this vite configuration block
+  vite: {
+    server: {
+      // This allows the server to be accessible on your local network
+      host: true, 
+      // This specifically allows your custom domain to connect
+      allowedHosts: ['additionplus.ai'],
+    }
+  }
 });
