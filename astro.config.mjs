@@ -23,18 +23,20 @@ export default defineConfig({
   adapter: node({
     mode: 'middleware'
   }),
-  server: {
-    allowedHosts: ['localhost', '127.0.0.1', 'additionplus.ai', 'www.additionplus.ai'],
-  },
-  }),
 
-  // Add this vite configuration block
+  // Vite-specific configuration
   vite: {
     server: {
       // This allows the server to be accessible on your local network
       host: true, 
-      // This specifically allows your custom domain to connect
-      allowedHosts: ['additionplus.ai'],
+      // This specifically allows your custom domains to connect
+      allowedHosts: [
+        'localhost', 
+        '127.0.0.1', 
+        'additionplus.ai', 
+        'www.additionplus.ai'
+      ],
     }
   }
 });
+
